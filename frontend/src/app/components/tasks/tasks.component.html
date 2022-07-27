@@ -1,12 +1,24 @@
-<table>
-    <tr>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Issuer</th>
-    </tr>
-    <tr>
-        <td>{{task.name}}</td>
-        <td> {{task.category}} </td>
-        <td> {{task.issuer}} </td>
-    </tr>
-</table>
+<div class="container">
+    <div class="mt-3">
+        <table  class="table table-hover" style="text-align: center">
+            <thead>
+                <th>Name</th>
+                <th>Due</th>
+                <th>Issuer</th>
+                <th>Category</th>
+                <th>Edit</th>
+                <th>Display</th>
+                <th>Delete</th>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let task of tasks">
+                    <td>{{task.name}}</td>
+                    <td>{{task.end.getFullYear()}}</td>
+                    <td>{{task.issuer}}</td>
+                    <td>{{task.category}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

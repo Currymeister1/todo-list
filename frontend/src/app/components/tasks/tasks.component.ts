@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../../dto/task';
+import {TaskService} from "../../service/task.service";
 
 
 @Component({
@@ -8,23 +9,13 @@ import {Task} from '../../dto/task';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent implements OnInit {
-    tasks: Task[] =[
-      {name: 'Cleaning',
-      description: 'Household chore',
-      end: new Date('2020-12-12'),
-      issuer: 'Mark',
-      category: 'Important'},
-      
-      {name: 'house',
-      description: 'Household chore',
-      end: new Date('2020-12-12'),
-      issuer: 'Mark',
-      category: 'Important'}
-  ]
+   public tasks: Task[] = []
 
-  constructor() { }
-  
+  constructor(private _taskService: TaskService) { }
+
   ngOnInit(): void {
+     this._taskService.getTasks().subscribe(data => this.tasks = data);
+     console.log(this.tasks)
   }
 
 }

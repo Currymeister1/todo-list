@@ -8,8 +8,8 @@
                 <th>Due</th>
                 <th>Issuer</th>
                 <th>Category</th>
-                <th>Edit</th>
                 <th>Display</th>
+                <th>Edit</th>
                 <th>Delete</th>
             </thead>
 
@@ -19,8 +19,8 @@
                     <td>{{task.ended}}</td>
                     <td>{{task.issuer}}</td>
                     <td>{{task.category}}</td>
-                    <td><button routerLink="/task/edit/{{task.id}}" class="btn btn-primary">E</button></td>
-                    <td><button class="btn btn-success">D</button></td>
+                    <td><button routerLink="/task/edit/{{task.id}}" class="btn btn-primary">D</button></td>
+                    <td><button class="btn btn-success">E</button></td>
                     <td><button class="btn btn-danger">X</button></td>
                 </tr>
             </tbody>

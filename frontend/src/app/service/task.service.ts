@@ -21,4 +21,9 @@ export class TaskService {
   saveTask(task: Task): Observable<Task>{
     return this.http.post<Task>(this.BASE_URL,task,this.httpOptions)
   }
+
+  getTaskById(id: string | null): Observable<Task>{
+    return this.http.get<Task>(this.BASE_URL+`/${id}`);
+  }
+
 }

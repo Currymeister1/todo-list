@@ -1,5 +1,6 @@
 package com.todlist.backend.service.impl;
 
+import com.todlist.backend.DTO.TaskDTO;
 import com.todlist.backend.entity.Task;
 import com.todlist.backend.persistence.TaskDao;
 import com.todlist.backend.service.TaskService;
@@ -21,5 +22,15 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public List<Task> getAll() {
         return taskDao.getAll();
+    }
+
+    @Override
+    public Task saveTask(TaskDTO taskDTO) {
+        return taskDao.saveTask(taskDTO);
+    }
+
+    @Override
+    public Task getTaskById(Long id) {
+        return taskDao.getTaskById(id);
     }
 }

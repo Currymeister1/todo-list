@@ -4,11 +4,9 @@ package com.todlist.backend.rest;
 import com.todlist.backend.DTO.TaskDTO;
 import com.todlist.backend.Mapper.TaskMapper;
 import com.todlist.backend.service.TaskService;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Locale;
 import java.util.stream.Stream;
 
 @RestController
@@ -27,5 +25,15 @@ public class TaskEndpoint {
     @GetMapping
     public Stream<TaskDTO> getAll(){
         return taskService.getAll().stream().map(taskMapper::entityToDto);
+    }
+
+    @GetMapping("/{id}")
+    public TaskDTO getTaskById(@PathVariable("id") Long id){
+        return taskMapper.entityToDto(taskService.getTaskById(id));
+    }
+
+    @PostMapping
+    public TaskDTO saveTask(@RequestBody TaskDTO taskDTO){
+        return taskMapper.entityToDto(taskService.saveTask(taskDTO));
     }
 }

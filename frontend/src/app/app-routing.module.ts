@@ -6,8 +6,9 @@ import {TaskeditorComponent} from "./components/taskeditor/taskeditor.component"
 import {TaskcreatorComponent} from "./components/taskcreator/taskcreator.component";
 
 const routes: Routes = [
+    {path: '', redirectTo:'task', pathMatch:'full'},
     {path: 'task', component: TasksComponent},
-    {path: 'task/edit', component: TaskeditorComponent},
+    {path: 'task/edit/:id', component: TaskeditorComponent},
     {path: 'task/create', component: TaskcreatorComponent}
 ];
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Task} from '../../dto/task'
+import {TaskService} from "../../service/task.service";
 @Component({
   selector: 'app-taskcreator',
   templateUrl: './taskcreator.component.html',
@@ -12,13 +13,14 @@ export class TaskcreatorComponent implements OnInit {
 
   categories: string[] = ['Slightly Important', 'Important', 'Very Important']
 
-  constructor() { }
+  constructor(private _taskService: TaskService) { }
 
   ngOnInit(): void {
   }
 
-  logger():void{
+  saveTask():void{
     console.log(this.task)
+    this._taskService.saveTask(this.task).subscribe();
   }
 
 }

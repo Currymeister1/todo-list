@@ -6,7 +6,8 @@
         <div class="mb-3">
           <div class="form-group">
             <label for="name">Task Name:</label>
-            <input [(ngModel)]="task.name" name="name" type="text" class="form-control" id="name" placeholder="Name.."/>
+            <input  [(ngModel)]="task.name" name="name" type="text" class="form-control" id="name" placeholder="Name.."/>
+
           </div>
         </div>
 
@@ -49,7 +50,7 @@
         </div>
 
         <div class="mt-5">
-          <button class="btn btn-success" (click)="logger()">Logger</button>
+          <button class="btn btn-success" (click)="saveTask()">Logger</button>
         </div>
 
       </form>

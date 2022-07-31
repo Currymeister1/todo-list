@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 
 import {Task} from "../dto/task";
 import {Observable} from "rxjs";
@@ -11,8 +11,14 @@ export class TaskService {
 
   constructor(private http:HttpClient) { }
 
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
+  BASE_URL:string = 'http://localhost:8080/tasks';
 
   getTasks(): Observable<Task[]>{
-    return this.http.get<Task[]>('http://localhost:8080/tasks');
+    return this.http.get<Task[]>(this.BASE_URL);
+  }
+
+  saveTask(task: Task): Observable<Task>{
+    return this.http.post<Task>(this.BASE_URL,task,this.httpOptions)
   }
 }

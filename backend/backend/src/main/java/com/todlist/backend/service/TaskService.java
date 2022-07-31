@@ -12,4 +12,6 @@ public interface TaskService {
 
 
     Task getTaskById(Long id);
+
+    Task deleteTaskById(Long id);
 }

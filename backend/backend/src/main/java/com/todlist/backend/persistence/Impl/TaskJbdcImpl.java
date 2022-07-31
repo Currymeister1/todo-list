@@ -69,9 +69,17 @@ public class TaskJbdcImpl implements TaskDao {
 
     @Override
     public Task getTaskById(Long id) {
-        final String sql = String.format("SELECT * FROM %s WHERE ID = %d",TABLE_NAME,id);
+        final String sql = String.format("SELECT * FROM %s WHERE ID = %s",TABLE_NAME,id);
 
         return jdbcTemplate.query(sql,this::mapRow).get(0);
+    }
+
+    @Override
+    public Task deleteTaskById(Long id) {
+        Task task = getTaskById(id);
+        final String sql = String.format("DELETE FROM %s WHERE ID=%d", TABLE_NAME, id);
+        jdbcTemplate.execute(sql);
+        return task;
     }
 
 

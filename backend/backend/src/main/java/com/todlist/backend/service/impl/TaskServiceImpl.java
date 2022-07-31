@@ -33,4 +33,9 @@ public class TaskServiceImpl implements TaskService {
     public Task getTaskById(Long id) {
         return taskDao.getTaskById(id);
     }
+
+    @Override
+    public Task deleteTaskById(Long id) {
+        return taskDao.deleteTaskById(id);
+    }
 }

@@ -69,7 +69,7 @@ public class TaskJbdcImpl implements TaskDao {
 
     @Override
     public Task getTaskById(Long id) {
-        final String sql = String.format("SELECT * FROM %s WHERE ID = %s",TABLE_NAME,id);
+        final String sql = String.format("SELECT * FROM %s WHERE ID = %d",TABLE_NAME,id);
 
         return jdbcTemplate.query(sql,this::mapRow).get(0);
     }
@@ -80,6 +80,33 @@ public class TaskJbdcImpl implements TaskDao {
         final String sql = String.format("DELETE FROM %s WHERE ID=%d", TABLE_NAME, id);
         jdbcTemplate.execute(sql);
         return task;
+    }
+
+    @Override
+    public Task updateTask(TaskDTO taskDTO) {
+        Task task = taskMapper.dtoToEntity(taskDTO);
+        long id =  task.getId();
+        final String sql = String.format("UPDATE %s SET name=?,description=?,started=?,ended=?,issuer=?,category=? WHERE ID = ?",TABLE_NAME);
+
+        final PreparedStatementCreator psc = new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                final PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setString(1,task.getName());
+                ps.setString(2,task.getDescription());
+                ps.setDate(3,Date.valueOf(task.getStarted()));
+                ps.setDate(4,Date.valueOf(task.getEnded()));
+                ps.setString(5,task.getIssuer());
+                ps.setString(6,task.getCategory());
+                ps.setLong(7,id);
+
+                return ps;
+            }
+        };
+        jdbcTemplate.update(psc);
+        return task;
+
     }
 
 

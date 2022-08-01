@@ -1,0 +1,59 @@
+<div class="container">
+  <h1 class="display-1">Task Creator</h1>
+
+  <div class="mt-5">
+    <form >
+      <fieldset disabled>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="name">Task Name:</label>
+            <input [(ngModel)]="task.name" name="name" type="text" class="form-control" id="name" placeholder="Name.." />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="description">Task Description:</label>
+            <input [(ngModel)]="task.description" name="description" type="text" class="form-control" id="description" placeholder="Description.." />
+          </div>
+        </div>
+
+        <div clasS="mb-3">
+          <div class="form-group">
+            <label for="started">Task Started:</label>
+            <input [(ngModel)]="task.started" type="date" name="started" class="form-control" id="started" placeholder="Starting Date.." />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="ended">Task Ended: </label>
+            <input [(ngModel)]="task.ended" type="date" name="ended" class="form-control" id="ended" placeholder="Ending Date.." />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="name">Task Issuer: </label>
+            <input [(ngModel)]="task.issuer" name="issuer" type="text" class="form-control" id="issuer" placeholder="Issuer.." />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="category">Task Importance:</label>
+            <input [(ngModel)]="task.category" name="category" type="text" class="form-control" id="category" placeholder="Issuer.." />
+
+
+          </div>
+        </div>
+      </fieldset>
+      <div class="mt-5">
+        <button routerLink="/task/edit/{{id}}" class="btn btn-success">Edit</button>
+      </div>
+
+    </form>
+  </div>
+
+</div>

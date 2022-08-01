@@ -19,8 +19,8 @@
                     <td>{{task.ended}}</td>
                     <td>{{task.issuer}}</td>
                     <td>{{task.category}}</td>
-                    <td><button routerLink="/task/edit/{{task.id}}" class="btn btn-primary">D</button></td>
-                    <td><button class="btn btn-success">E</button></td>
+                    <td><button routerLink="/task/display/{{task.id}}" class="btn btn-primary">D</button></td>
+                    <td><button routerLink="/task/edit/{{task.id}}" class="btn btn-success">E</button></td>
                     <td><button class="btn btn-danger" (click)="deleteTaskById(task.id)" >X</button></td>
                 </tr>
             </tbody>

@@ -1,9 +1,9 @@
 <div class="container">
-  <h1 class="display-1">Task Creator</h1>
+  <h1 class="display-1">Task Editor</h1>
 
   <div class="mt-5">
     <form >
-      <fieldset disabled>
+      <fieldset>
       <div class="mb-3">
         <div class="form-group">
           <label for="name">Task Name:</label>
@@ -22,14 +22,14 @@
       <div clasS="mb-3">
         <div class="form-group">
           <label for="started">Task Started:</label>
-          <input [(ngModel)]="task.started" type="date" name="name" class="form-control" id="started" placeholder="Starting Date.." />
+          <input [(ngModel)]="task.started" type="date" name="started" class="form-control" id="started" placeholder="Starting Date.." />
         </div>
       </div>
 
       <div class="mb-3">
         <div class="form-group">
           <label for="ended">Task Ended: </label>
-          <input [(ngModel)]="task.ended" type="date" name="name" class="form-control" id="ended" placeholder="Ending Date.." />
+          <input [(ngModel)]="task.ended" type="date" name="ended" class="form-control" id="ended" placeholder="Ending Date.." />
         </div>
       </div>
 
@@ -50,7 +50,7 @@
       </div>
       </fieldset>
       <div class="mt-5">
-        <button class="btn btn-success">Logger</button>
+        <button class="btn btn-success" (click)="updateTask()">Save!</button>
       </div>
 
     </form>

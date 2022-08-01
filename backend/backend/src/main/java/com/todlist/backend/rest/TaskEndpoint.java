@@ -29,7 +29,6 @@ public class TaskEndpoint {
 
     @GetMapping("/{id}")
     public TaskDTO getTaskById(@PathVariable("id") Long id){
-        System.out.println("Hello");
         return taskMapper.entityToDto(taskService.getTaskById(id));
     }
 
@@ -42,5 +41,10 @@ public class TaskEndpoint {
     @DeleteMapping("/{id}")
     public TaskDTO deleteTaskById(@PathVariable("id") Long id){
         return taskMapper.entityToDto(taskService.deleteTaskById(id));
+    }
+
+    @PutMapping
+    public TaskDTO updateTask(@RequestBody TaskDTO taskDTO){
+        return taskMapper.entityToDto(taskService.updateTask(taskDTO));
     }
 }

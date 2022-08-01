@@ -6,5 +6,10 @@ CREATE TABLE tasks(
     ended date,
     issuer VARCHAR(255),
     category VARCHAR(255)
+);
 
+CREATE TABLE issuers(
+    id BIGINT PRIMARY KEY,
+    name VARCHAR(255),
+    role VARCHAR(255)
 );

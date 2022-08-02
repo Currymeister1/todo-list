@@ -62,6 +62,27 @@ public class IssuerJbdcImpl implements IssuerDao {
         return issuer;
     }
 
+    @Override
+    public String getCreds(String name, String role) {
+
+        final String sql = String.format("SELECT * FROM %s WHERE name=? AND role=?", TABLE_NAME);
+
+        final PreparedStatementCreator psc = new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                final PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setString(1,name);
+                ps.setString(2,role);
+
+                return ps;
+            }
+        };
+
+        Issuer issuer = jdbcTemplate.query(psc,this::mapRow).get(0);
+        return issuer.getId();
+    }
+
 
     private Issuer mapRow(ResultSet resultset, int i) throws SQLException {
         final Issuer issuer = new Issuer();

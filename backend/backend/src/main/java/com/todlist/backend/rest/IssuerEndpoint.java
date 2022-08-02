@@ -21,13 +21,19 @@ public class IssuerEndpoint {
         this.issuerMap = issuerMap;
     }
 
+    /**
     @GetMapping
     public Stream<IssuerDTO> getAll(){
         return issuerService.getAll().stream().map(issuerMap::entityToDto);
     }
-
+     **/
     @PostMapping
     public IssuerDTO saveIssuer(@RequestBody IssuerDTO issuerDTO){
         return issuerMap.entityToDto(issuerService.saveIssuer(issuerDTO));
+    }
+
+    @GetMapping
+    public String getCreds(@RequestParam String name, @RequestParam String role){
+        return issuerService.getCreds(name,role);
     }
 }

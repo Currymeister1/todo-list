@@ -27,4 +27,9 @@ public class IssuerServiceImpl implements IssuerService {
     public Issuer saveIssuer(IssuerDTO issuerDTO) {
         return issuerDao.saveIssuer(issuerDTO);
     }
+
+    @Override
+    public String getCreds(String name, String role) {
+        return issuerDao.getCreds(name,role);
+    }
 }

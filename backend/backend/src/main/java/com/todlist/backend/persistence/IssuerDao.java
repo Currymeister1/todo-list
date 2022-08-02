@@ -9,4 +9,6 @@ public interface IssuerDao {
     List<Issuer> getAll();
 
     Issuer saveIssuer(IssuerDTO issuerDTO);
+
+    String getCreds(String name, String role);
 }

@@ -3,8 +3,13 @@ input{
   margin: auto;
   display: block;
   text-align: center;
+}
 
-
+.error{
+  color: red;
+  margin: auto;
+  display: block;
+  text-align: center;
 }
 
 form {

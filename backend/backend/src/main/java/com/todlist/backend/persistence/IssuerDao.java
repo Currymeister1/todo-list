@@ -1,11 +1,11 @@
-package com.todlist.backend.service;
+package com.todlist.backend.persistence;
 
 import com.todlist.backend.DTO.IssuerDTO;
 import com.todlist.backend.entity.Issuer;
 
 import java.util.List;
 
-public interface IssuerService {
+public interface IssuerDao {
     List<Issuer> getAll();
 
     Issuer saveIssuer(IssuerDTO issuerDTO);

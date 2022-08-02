@@ -4,9 +4,8 @@ package com.todlist.backend.rest;
 import com.todlist.backend.DTO.IssuerDTO;
 import com.todlist.backend.Mapper.IssuerMap;
 import com.todlist.backend.service.IssuerService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.stream.Stream;
 
 @RestController
@@ -25,5 +24,10 @@ public class IssuerEndpoint {
     @GetMapping
     public Stream<IssuerDTO> getAll(){
         return issuerService.getAll().stream().map(issuerMap::entityToDto);
+    }
+
+    @PostMapping
+    public IssuerDTO saveIssuer(@RequestBody IssuerDTO issuerDTO){
+        return issuerMap.entityToDto(issuerService.saveIssuer(issuerDTO));
     }
 }

@@ -6,6 +6,8 @@ public class Issuer {
     private String role;
 
 
+    public Issuer() {}
+
     public Issuer(String id, String name, String role) {
         this.id = id;
         this.name = name;

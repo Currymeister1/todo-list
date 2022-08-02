@@ -19,7 +19,7 @@ import java.time.ZoneId;
 import java.util.List;
 @Repository
 public class TaskJbdcImpl implements TaskDao {
-    private static final String TABLE_NAME = "PUBLIC.TASKS";
+    private static final String TABLE_NAME = "TASKS";
     private static final TaskMapper taskMapper = new TaskMapper();
     private final JdbcTemplate jdbcTemplate;
 

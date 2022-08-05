@@ -1,0 +1,41 @@
+input{
+  width: 200px;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.error{
+  color: red;
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+form {
+  margin: 0 auto;
+  width:250px;
+  border-style: solid;
+  border-width: thin;
+}
+
+label {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+button {
+  margin: auto;
+  display: block;
+  text-align: center;
+}
+
+.navbar {
+  margin-bottom: 0.5em;
+}
+
+.navbar-brand {
+  margin-left: 0.5em;
+}
+

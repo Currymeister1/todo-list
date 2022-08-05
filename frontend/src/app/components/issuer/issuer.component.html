@@ -1,0 +1,27 @@
+<app-header></app-header>
+
+<div class="container">
+  <h1 class="display-1">Issuer Info</h1>
+
+  <div class="mt-5">
+    <form >
+      <fieldset disabled>
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="name">Issuers Name:</label>
+            <input [ngModel]="issuer.name" name="name" type="text" class="form-control" id="name"  />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <div class="form-group">
+            <label for="group">Issuers Group:</label>
+            <input [ngModel]="issuer.role" name="group" type="text" class="form-control" id="group" />
+          </div>
+        </div>
+      </fieldset>
+
+    </form>
+  </div>
+
+</div>

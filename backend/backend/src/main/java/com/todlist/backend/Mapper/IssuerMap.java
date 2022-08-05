@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class IssuerMap {
 
     public IssuerDTO entityToDto(Issuer issuer){
-        return new IssuerDTO(issuer.getId(),issuer.getName(),issuer.getRole());
+        return new IssuerDTO(issuer.getId(), issuer.getName(),issuer.getRole());
     }
 
     public Issuer dtoToEntity(IssuerDTO issuerDTO){

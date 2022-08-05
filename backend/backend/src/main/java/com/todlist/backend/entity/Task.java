@@ -11,6 +11,15 @@ public class Task {
     private LocalDate ended;
     private String issuer;
     private String category;
+    private String group;
+
+    public String getGroup() {
+        return group;
+    }
+
+    public void setGroup(String group) {
+        this.group = group;
+    }
 
     public Task(){}
     public Task(Long id, String name, String description, LocalDate started, LocalDate ended, String issuer, String category) {
@@ -23,6 +32,16 @@ public class Task {
         this.category = category;
     }
 
+    public Task(Long id, String name, String description, LocalDate started, LocalDate ended, String issuer, String category,String group) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.started = started;
+        this.ended = ended;
+        this.issuer = issuer;
+        this.category = category;
+        this.group = group;
+    }
     public Task(String name, String description, LocalDate started, LocalDate ended, String issuer, String category) {
         this.name = name;
         this.description = description;

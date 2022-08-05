@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {IssuerService} from "../../service/issuer.service";
 import {Router} from "@angular/router";
+import {Issuer} from "../../dto/issuer";
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,9 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent implements OnInit {
 
-  name: string =''
-  group: string =''
-  id: String = ''
+  issuer: Issuer = {'id':'','name':'','role':''}
+  name:string=''
+  group:string=''
   showError: boolean = false
   constructor(private _issuerService:IssuerService,private router: Router) { }
 
@@ -19,11 +20,11 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    this._issuerService.getCreds(this.name, this.group).subscribe(id =>
-      {this.id = id;
-       if(id){
+    this._issuerService.getCreds(this.name, this.group).subscribe(data =>
+      {this.issuer = data;
+       if(data){
          // @ts-ignore
-         localStorage.setItem('token',this.id);
+         localStorage.setItem('issuer',JSON.stringify(this.issuer));
          this.router.navigate(['task']);
          this.showError = false;
        }

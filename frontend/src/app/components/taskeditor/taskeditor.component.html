@@ -34,23 +34,19 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <div class="form-group">
-          <label for="name">Task Issuer: </label>
-          <input [(ngModel)]="task.issuer" name="issuer" type="text" class="form-control" id="issuer" placeholder="Issuer.." />
-        </div>
-      </div>
 
       <div class="mb-3">
         <div class="form-group">
           <label for="category">Task Importance:</label>
-          <input [(ngModel)]="task.category" name="category" type="text" class="form-control" id="category" placeholder="Issuer.." />
-
-
+         <select class="form-control" id="category" [(ngModel)]="task.category" name="category">
+           <option *ngFor="let category of categories">{{category}}</option>
+         </select>
         </div>
       </div>
+
       </fieldset>
-      <div class="mt-5">
+
+      <div class="mt-3">
         <button class="btn btn-success" (click)="updateTask()">Save!</button>
       </div>
 

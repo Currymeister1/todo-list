@@ -10,5 +10,7 @@ public interface IssuerDao {
 
     Issuer saveIssuer(IssuerDTO issuerDTO);
 
-    String getCreds(String name, String role);
+    Issuer getCreds(String name, String role);
+
+
 }

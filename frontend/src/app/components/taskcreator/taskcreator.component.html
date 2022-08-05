@@ -35,13 +35,6 @@
 
         <div class="mb-3">
           <div class="form-group">
-            <label for="name">Task Issuer: </label>
-            <input [(ngModel)]="task.issuer" name="issuer" type="text" class="form-control" id="issuer" placeholder="Issuer.."/>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <div class="form-group">
             <label for="category">Task Importance:</label>
             <select class="form-control" id="category" [(ngModel)]="task.category" name="category">
                 <option *ngFor="let category of categories" >{{category}}</option>

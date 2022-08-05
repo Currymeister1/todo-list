@@ -15,7 +15,10 @@
             </thead>
 
             <tbody>
-                <tr *ngFor="let task of tasks">
+                <tr *ngFor="let task of tasks" [ngClass]="{'very-important': task.category==='Very Important',
+                                                           'slightly-important': task.category==='Slightly Important',
+                                                            'important': task.category==='Important'
+                                                                                                           }">
                     <td>{{task.name}}</td>
                     <td>{{task.ended}}</td>
                     <td>{{task.issuer}}</td>

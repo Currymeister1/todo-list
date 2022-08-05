@@ -37,7 +37,7 @@ public class IssuerJbdcImpl implements IssuerDao {
         Issuer issuer = issuerMap.dtoToEntity(issuerDTO);
         String uniqueID = UUID.randomUUID().toString();
 
-        final String sql = String.format("INSERT INTO %s (id,name,role) VALUES(?,?,?)",TABLE_NAME);
+        final String sql = String.format("INSERT INTO %s (id,name,groupId) VALUES(?,?,?)",TABLE_NAME);
 
         final PreparedStatementCreator psc = new PreparedStatementCreator() {
             @Override
@@ -46,26 +46,34 @@ public class IssuerJbdcImpl implements IssuerDao {
 
                 ps.setString(1,uniqueID);
                 ps.setString(2,issuer.getName());
-                ps.setString(3,issuer.getRole());
+                ps.setLong(3,getGroupId(issuer.getRole()));
 
                 return ps;
             }
         };
 
-
-
         jdbcTemplate.update(psc);
-
-
-
 
         return issuer;
     }
 
-    @Override
-    public String getCreds(String name, String role) {
+    private Long getGroupId(String groupName){
+        final String sql = "SELECT id FROM roles where name=?";
 
-        final String sql = String.format("SELECT * FROM %s WHERE name=? AND role=?", TABLE_NAME);
+        final PreparedStatementCreator psc = con -> {
+            final PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,groupName);
+            return ps;
+        };
+
+        return jdbcTemplate.query(psc,this::mapRowGroup).get(0);
+
+    }
+
+    @Override
+    public Issuer getCreds(String name, String role) {
+
+        final String sql = String.format("SELECT issuers.id as id, issuers.name as name, R.name as role FROM %s LEFT JOIN ROLES R WHERE issuers.name=? AND R.name=?", TABLE_NAME);
 
         final PreparedStatementCreator psc = new PreparedStatementCreator() {
             @Override
@@ -79,10 +87,12 @@ public class IssuerJbdcImpl implements IssuerDao {
             }
         };
 
-        Issuer issuer = jdbcTemplate.query(psc,this::mapRow).get(0);
-        return issuer.getId();
+        return jdbcTemplate.query(psc, this::mapRow).get(0);
     }
 
+    private Long mapRowGroup(ResultSet resultSet, int i) throws SQLException{
+        return resultSet.getLong("id");
+    }
 
     private Issuer mapRow(ResultSet resultset, int i) throws SQLException {
         final Issuer issuer = new Issuer();

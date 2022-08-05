@@ -29,7 +29,9 @@ public class IssuerServiceImpl implements IssuerService {
     }
 
     @Override
-    public String getCreds(String name, String role) {
+    public Issuer getCreds(String name, String role) {
         return issuerDao.getCreds(name,role);
     }
+
+
 }

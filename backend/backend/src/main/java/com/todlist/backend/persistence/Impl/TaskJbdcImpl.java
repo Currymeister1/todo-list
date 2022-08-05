@@ -3,6 +3,7 @@ package com.todlist.backend.persistence.Impl;
 import com.todlist.backend.DTO.TaskDTO;
 import com.todlist.backend.Mapper.TaskMapper;
 import com.todlist.backend.entity.Task;
+import com.todlist.backend.persistence.IssuerDao;
 import com.todlist.backend.persistence.TaskDao;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -38,7 +39,9 @@ public class TaskJbdcImpl implements TaskDao {
     public Task saveTask(TaskDTO taskDTO) {
         Task task = taskMapper.dtoToEntity(taskDTO);
 
-        final String sql = String.format("INSERT INTO %s (name,description,started,ended,issuer,category) VALUES(?,?,?,?,?,?)",TABLE_NAME);
+        String issuerName = issuerName(task.getIssuer());
+        Long groupID = getGroupId(task.getGroup());
+        final String sql = String.format("INSERT INTO %s (name,description,started,ended,issuer,category,groupID) VALUES(?,?,?,?,?,?,?)",TABLE_NAME);
 
         final PreparedStatementCreator psc = new PreparedStatementCreator() {
             @Override
@@ -51,6 +54,7 @@ public class TaskJbdcImpl implements TaskDao {
                 ps.setDate(4,Date.valueOf(task.getEnded()));
                 ps.setString(5,task.getIssuer());
                 ps.setString(6,task.getCategory());
+                ps.setLong(7,groupID);
 
                 return ps;
             }
@@ -63,7 +67,7 @@ public class TaskJbdcImpl implements TaskDao {
         long insertedID = keyHolder.getKey().longValue();
 
         task.setId(insertedID);
-
+        task.setIssuer(issuerName);
         return task;
     }
 
@@ -105,8 +109,47 @@ public class TaskJbdcImpl implements TaskDao {
             }
         };
         jdbcTemplate.update(psc);
+
         return task;
 
+    }
+
+
+    private String issuerName(String id){
+        final String sql = "SELECT name FROM issuers WHERE ID = ?";
+
+        final PreparedStatementCreator psc = new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                final PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setString(1,id);
+
+                return ps;
+            }
+        };
+       return jdbcTemplate.query(psc,this::mapRowIssuerName).get(0);
+    }
+
+    private Long getGroupId(String groupName){
+        final String sql = "SELECT id FROM roles where name=?";
+
+        final PreparedStatementCreator psc = con -> {
+            final PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1,groupName);
+            return ps;
+        };
+        System.out.println("HELLO"+groupName);
+        return jdbcTemplate.query(psc,this::mapRowGroup).get(0);
+
+    }
+    private Long mapRowGroup(ResultSet resultSet, int i) throws SQLException{
+        return resultSet.getLong("id");
+    }
+
+
+    private String mapRowIssuerName(ResultSet resultSet, int i) throws SQLException{
+        return resultSet.getString("name");
     }
 
 
@@ -121,6 +164,8 @@ public class TaskJbdcImpl implements TaskDao {
         task.setCategory(resultset.getString("category"));
         task.setIssuer(resultset.getString("issuer"));
 
+        System.out.println(task.getIssuer());
+        task.setIssuer(issuerName(task.getIssuer()));
         return task;
 
 

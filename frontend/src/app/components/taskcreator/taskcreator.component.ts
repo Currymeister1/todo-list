@@ -8,8 +8,10 @@ import {TaskService} from "../../service/task.service";
 })
 export class TaskcreatorComponent implements OnInit {
 
+
+
   // @ts-ignore
-  task: Task = {name: '',description:'',ended:null, started:null, issuer:'',category:'Slightly Important'}
+  task: Task = {name: '',description:'',ended:null, started:null, issuer: JSON.parse(localStorage.getItem('issuer')).id ,category:'Slightly Important', group: JSON.parse(localStorage.getItem('issuer')).role}
 
   categories: string[] = ['Slightly Important', 'Important', 'Very Important']
 

@@ -33,7 +33,10 @@ public class IssuerEndpoint {
     }
 
     @GetMapping
-    public String getCreds(@RequestParam String name, @RequestParam String role){
-        return issuerService.getCreds(name,role);
+    public IssuerDTO getCreds(@RequestParam String name, @RequestParam String role){
+        return issuerMap.entityToDto(issuerService.getCreds(name,role));
     }
+
+
+
 }

@@ -11,6 +11,8 @@ import { TaskeditorComponent } from './components/taskeditor/taskeditor.componen
 import { TaskcreatorComponent } from './components/taskcreator/taskcreator.component';
 import { TaskDisplayComponent } from './components/task-display/task-display.component';
 import { LoginComponent } from './components/login/login.component';
+import { IssuerComponent } from './components/issuer/issuer.component';
+import { RegisterationComponent } from './components/registeration/registeration.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { LoginComponent } from './components/login/login.component';
     TaskeditorComponent,
     TaskcreatorComponent,
     TaskDisplayComponent,
-    LoginComponent
+    LoginComponent,
+    IssuerComponent,
+    RegisterationComponent
   ],
   imports: [
     BrowserModule,

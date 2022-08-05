@@ -6,6 +6,5 @@ export interface Task{
     ended: Date;
     issuer: string;
     category: string;
-
-
+    group: string;
 }

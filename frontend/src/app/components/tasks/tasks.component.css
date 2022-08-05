@@ -2,3 +2,16 @@
     text-align: center;
     padding: 15px;
 }
+
+
+.very-important{
+  background-color: gray;
+}
+
+.slightly-important{
+  background-color: darkgray;
+}
+
+.important{
+  background-color: lightgray;
+}

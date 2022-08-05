@@ -10,5 +10,6 @@ public interface IssuerService {
 
     Issuer saveIssuer(IssuerDTO issuerDTO);
 
-    String getCreds(String name, String role);
+    Issuer getCreds(String name, String role);
+
 }

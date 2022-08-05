@@ -10,8 +10,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class TaskeditorComponent implements OnInit {
   // @ts-ignore
-  task: Task = {name: '', description:'',ended:null, started:null, issuer:'',category:'Slightly Important'}
+  task: Task = {name: '', description:'',ended:null, started:null, issuer: JSON.parse(localStorage.getItem('issuer')).id ,category:'Slightly Important'}
   constructor(private route: ActivatedRoute, private _taskService: TaskService) { }
+
+   categories: string[] = ['Slightly Important', 'Important', 'Very Important']
 
   ngOnInit(): void {
     this.fetchTaskById()

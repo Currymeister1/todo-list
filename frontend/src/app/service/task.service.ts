@@ -14,8 +14,8 @@ export class TaskService {
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
   BASE_URL:string = 'http://localhost:8080/tasks';
 
-  getTasks(): Observable<Task[]>{
-    return this.http.get<Task[]>(this.BASE_URL);
+  getTasks(groupName:string): Observable<Task[]>{
+    return this.http.get<Task[]>(this.BASE_URL+`/group/${groupName}`);
   }
 
   saveTask(task: Task): Observable<Task>{

@@ -13,4 +13,5 @@ public interface IssuerDao {
     Issuer getCreds(String name, String role);
 
 
+    List<Issuer> getGroup(String name);
 }

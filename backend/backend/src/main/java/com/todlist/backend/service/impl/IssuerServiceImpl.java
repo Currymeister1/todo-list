@@ -33,5 +33,10 @@ public class IssuerServiceImpl implements IssuerService {
         return issuerDao.getCreds(name,role);
     }
 
+    @Override
+    public List<Issuer> getGroup(String name) {
+        return issuerDao.getGroup(name);
+    }
+
 
 }

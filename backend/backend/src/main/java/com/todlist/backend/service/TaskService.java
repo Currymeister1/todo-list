@@ -6,7 +6,7 @@ import com.todlist.backend.entity.Task;
 import java.util.List;
 
 public interface TaskService {
-    List<Task> getAll();
+    List<Task> getAll(String name);
 
     Task saveTask(TaskDTO taskDTO);
 

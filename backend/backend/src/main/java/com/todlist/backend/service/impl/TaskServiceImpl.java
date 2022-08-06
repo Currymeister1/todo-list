@@ -20,8 +20,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAll() {
-        return taskDao.getAll();
+    public List<Task> getAll(String name) {
+        return taskDao.getAll(name);
     }
 
     @Override

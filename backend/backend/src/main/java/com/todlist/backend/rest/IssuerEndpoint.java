@@ -6,6 +6,7 @@ import com.todlist.backend.Mapper.IssuerMap;
 import com.todlist.backend.service.IssuerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -35,6 +36,11 @@ public class IssuerEndpoint {
     @GetMapping
     public IssuerDTO getCreds(@RequestParam String name, @RequestParam String role){
         return issuerMap.entityToDto(issuerService.getCreds(name,role));
+    }
+
+    @GetMapping("/group/{name}")
+    public Stream<IssuerDTO> getGroup(@PathVariable String name){
+        return issuerService.getGroup(name).stream().map(issuerMap::entityToDto);
     }
 
 

@@ -18,7 +18,9 @@ export class TasksComponent implements OnInit {
   }
 
   getTasks(){
-    this._taskService.getTasks().subscribe(data => this.tasks = data);
+     // @ts-ignore
+    let groupName = JSON.parse(localStorage.getItem('issuer')).role
+    this._taskService.getTasks(groupName).subscribe(data => this.tasks = data);
   }
 
   deleteTaskById(id: number | undefined){

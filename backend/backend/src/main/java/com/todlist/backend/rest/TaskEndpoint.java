@@ -22,9 +22,9 @@ public class TaskEndpoint {
         this.taskMapper = taskMapper;
     }
 
-    @GetMapping
-    public Stream<TaskDTO> getAll(){
-        return taskService.getAll().stream().map(taskMapper::entityToDto);
+    @GetMapping("/group/{name}")
+    public Stream<TaskDTO> getAll(@PathVariable("name")  String name){
+        return taskService.getAll(name).stream().map(taskMapper::entityToDto);
     }
 
     @GetMapping("/{id}")

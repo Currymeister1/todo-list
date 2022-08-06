@@ -29,8 +29,9 @@ public class TaskJbdcImpl implements TaskDao {
     }
 
     @Override
-    public List<Task> getAll() {
-        final String sql = String.format("SELECT * FROM %s", TABLE_NAME);
+    public List<Task> getAll(String name) {
+        Long groupId = getGroupId(name);
+        final String sql = String.format("SELECT * FROM %s WHERE groupId = %d", TABLE_NAME,groupId);
         return jdbcTemplate.query(sql, this::mapRow);
 
     }

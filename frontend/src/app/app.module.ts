@@ -13,6 +13,7 @@ import { TaskDisplayComponent } from './components/task-display/task-display.com
 import { LoginComponent } from './components/login/login.component';
 import { IssuerComponent } from './components/issuer/issuer.component';
 import { RegisterationComponent } from './components/registeration/registeration.component';
+import { GroupComponent } from './components/group/group.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { RegisterationComponent } from './components/registeration/registeration
     TaskDisplayComponent,
     LoginComponent,
     IssuerComponent,
-    RegisterationComponent
+    RegisterationComponent,
+    GroupComponent
   ],
   imports: [
     BrowserModule,

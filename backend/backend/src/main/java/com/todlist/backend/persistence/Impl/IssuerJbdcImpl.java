@@ -90,6 +90,26 @@ public class IssuerJbdcImpl implements IssuerDao {
         return jdbcTemplate.query(psc, this::mapRow).get(0);
     }
 
+    @Override
+    public List<Issuer> getGroup(String name) {
+        Long id = getGroupId(name);
+        final String sql = "SELECT * FROM ISSUERS WHERE GROUPID=?";
+
+        final PreparedStatementCreator psc = new PreparedStatementCreator() {
+            @Override
+            public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                final PreparedStatement ps = con.prepareStatement(sql);
+
+                ps.setLong(1,id);
+
+                return ps;
+            }
+        };
+
+
+        return jdbcTemplate.query(psc,this::mapRow2);
+    }
+
     private Long mapRowGroup(ResultSet resultSet, int i) throws SQLException{
         return resultSet.getLong("id");
     }
@@ -100,6 +120,17 @@ public class IssuerJbdcImpl implements IssuerDao {
         issuer.setId(resultset.getString("id"));
         issuer.setName(resultset.getString("name"));
         issuer.setRole(resultset.getString("role"));
+
+        return issuer;
+
+    }
+
+    private Issuer mapRow2(ResultSet resultset, int i) throws SQLException {
+        final Issuer issuer = new Issuer();
+
+        issuer.setId(resultset.getString("id"));
+        issuer.setName(resultset.getString("name"));
+
 
         return issuer;
 

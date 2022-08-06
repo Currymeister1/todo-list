@@ -10,6 +10,7 @@ import {IssuerComponent} from "./components/issuer/issuer.component";
 import {RegisterationComponent} from "./components/registeration/registeration.component";
 import {AuthGuard} from "./service/auth.guard";
 import {AuthregisterGuard} from "./service/authregister.guard";
+import {GroupComponent} from "./components/group/group.component";
 
 const routes: Routes = [
     {path: '', redirectTo:'task', pathMatch:'full'},
@@ -19,7 +20,8 @@ const routes: Routes = [
     {path: 'task/display/:id', component: TaskDisplayComponent, canActivate:[AuthGuard]},
     {path: 'issuer/my-profile', component: IssuerComponent,  canActivate:[AuthGuard]},
     {path: 'login', component: LoginComponent},
-    {path: 'register', component: RegisterationComponent, canActivate:[AuthregisterGuard]}
+    {path: 'register', component: RegisterationComponent, canActivate:[AuthregisterGuard]},
+    {path:'group/:name', component: GroupComponent}
 ];
 
 @NgModule({

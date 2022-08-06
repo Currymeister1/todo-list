@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface TaskDao {
 
-    List<Task> getAll();
+    List<Task> getAll(String name);
 
     Task saveTask(TaskDTO taskDTO);
 

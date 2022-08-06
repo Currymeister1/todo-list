@@ -22,4 +22,8 @@ export class IssuerService {
   registerIssuer(issuer:Issuer){
     return this.http.post<Issuer>(this.BASE_URL,issuer,this.httpOptions);
   }
+
+  getGroup(group:string):Observable<Issuer[]>{
+    return this.http.get<Issuer[]>(`${this.BASE_URL}/group/${group}`)
+  }
 }
